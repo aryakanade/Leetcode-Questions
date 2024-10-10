@@ -1,0 +1,12 @@
+from collections import defaultdict
+class Solution:
+    def numIdenticalPairs(self, nums: List[int]) -> int:
+        mp = defaultdict(int)
+        ans  = 0
+        for i in range(len(nums)):
+            mp[nums[i]] += 1
+
+        for key,value in mp.items():
+            if value > 1:
+                ans += int(((value-1)*value)/2)
+        return ans
