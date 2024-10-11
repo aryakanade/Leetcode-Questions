@@ -1,0 +1,16 @@
+from collections import defaultdict
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        mp = defaultdict(int)
+        result = ""
+        for i in range(len(s)):
+            mp[s[i]] += 1
+        
+        mp = dict(sorted(mp.items(), key = lambda x : x[1], reverse=True))
+        
+        for key,value in mp.items():
+            while value != 0:
+                result += key
+                value -= 1
+
+        return result
