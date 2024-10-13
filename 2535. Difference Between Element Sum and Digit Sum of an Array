@@ -1,0 +1,19 @@
+class Solution:
+    def differenceOfSum(self, nums: List[int]) -> int:
+        digit = 0
+        sm = 0
+        digitSum = 0
+        ans = 0
+        for i in range(len(nums)):
+            sm += nums[i]
+
+            if nums[i] < 9:
+                digitSum += nums[i]
+            else:
+                while nums[i] != 0:
+                    digit = nums[i] % 10
+                    digitSum += digit
+                    nums[i] = nums[i] // 10
+
+        ans = abs(digitSum-sm)
+        return ans
