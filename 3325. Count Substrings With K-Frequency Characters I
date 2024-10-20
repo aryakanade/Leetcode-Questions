@@ -1,0 +1,14 @@
+class Solution:
+    def numberOfSubstrings(self, s: str, k: int) -> int:
+        ans = 0
+        for i in range(len(s)):
+            ct = [0]*26
+            valid_sub = False
+            for j in range(i,len(s)):
+                ct[ord(s[j])-ord('a')] += 1
+                if ct[ord(s[j])-ord('a')] >= k:
+                    valid_sub = True
+                
+                if valid_sub is True:
+                    ans += 1
+        return ans
