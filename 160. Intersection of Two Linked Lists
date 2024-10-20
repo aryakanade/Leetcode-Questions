@@ -1,0 +1,10 @@
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        fast = headA
+        slow = headB
+
+        while fast != slow:
+            fast = fast.next if fast != None else headB
+            slow = slow.next if slow != None else headA
+
+        return fast
