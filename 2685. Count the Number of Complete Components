@@ -1,0 +1,32 @@
+class Solution:
+    def __init__(self):
+        self.nc = 0
+        self.ec = 0
+
+    def dfs(self,n,G,visited):
+        visited[n] = 1
+        self.nc += 1
+        self.ec += len(G[n])
+        for child in G[n]:
+            if visited[child] == 0:
+                self.dfs(child,G,visited)
+
+
+    def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
+        G = [[] for _ in range(n)]
+        visited = [0]*(n)
+
+        for i in edges:
+            x,y= i[0],i[1]
+            G[x].append(y)
+            G[y].append(x)
+
+        count = 0
+        for i in range(n):
+            if visited[i] == 0:
+                self.nc = 0
+                self.ec = 0
+                self.dfs(i,G,visited)
+                if self.nc * ( self.nc - 1 ) == self.ec:
+                    count += 1
+        return count
